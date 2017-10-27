@@ -1,6 +1,6 @@
 {
   "name": "voice-interaction",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "simple module to interact with your site using voice",
   "main": "main.js",
   "scripts": {
