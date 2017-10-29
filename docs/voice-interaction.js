@@ -32,6 +32,10 @@ let v = function (selector) {
     }
   }
   self.bindLinks = function () {
+    if (!self.links) {
+      self.throwWarning();
+      return
+    }
     self.links.forEach(function (link) {
       let href
       if (link.attributes['href']) {
@@ -78,6 +82,10 @@ let v = function (selector) {
     } else {
       self.hasVoiceDetection = false
     }
+  }
+  self.throwWarning = function () {
+    console.warn("Voice Interaction error : ")
+    console.warn("There is no link with the <data-voice> tag");
   }
 
 
