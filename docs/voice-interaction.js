@@ -1,8 +1,7 @@
-DEBUG = true
-//const DEBUG = false
+const DEBUG = false
 
-let v = function (selector) {
-  let self = {
+var v = function (selector) {
+  var self = {
     links: {},
     hasVoiceDetection: undefined,
     commands: undefined,
@@ -50,9 +49,8 @@ let v = function (selector) {
 
     let recognizer = link.attributes['data-voice'].value
     let obj = {}
-      obj[recognizer] = function () {
-        link.dispatchEvent(self.click)
-      }
+    obj[recognizer] = function () {
+      link.dispatchEvent(self.click)
     }
     annyang.addCommands(obj)
   }
@@ -89,7 +87,7 @@ let v = function (selector) {
   self.init()
   return self
 }
-let Voice
+var Voice
 
 document.addEventListener("DOMContentLoaded", function (event) {
   //do work
