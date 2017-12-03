@@ -50,14 +50,8 @@ let v = function (selector) {
 
     let recognizer = link.attributes['data-voice'].value
     let obj = {}
-    if (!href) {
       obj[recognizer] = function () {
         link.dispatchEvent(self.click)
-      }
-    } else {
-
-      obj[recognizer] = function () {
-        location.replace(href)
       }
     }
     annyang.addCommands(obj)

@@ -7,7 +7,14 @@ Interact with your website using your voice
 ## Example
 
 * Link the library to your app
-<script src="/libs/voice-interaction.js"></script>
+``` <script src="/libs/voice-interaction.js"></script> ```
+
+* Add Annyang and SpeechKITT
+```
+<script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
+```
+https://www.talater.com/annyang/
 
 * Add the tags \[data-voice=`"<what-to-say>"`\] to your links `<a>`
 ```<ul>
