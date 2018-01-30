@@ -11,5 +11,6 @@
     "url": "git://github.com/mmmaxou/voice-interaction.git"
   },
   "author": "mmmaxou",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {}
 }

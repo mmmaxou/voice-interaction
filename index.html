@@ -4,6 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <title>index</title>
+  <link rel="stylesheet" href="docs/voice-interaction.css">
+  <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Bitter', serif;
+    }
+  </style>
 </head>
 
 <body>
@@ -16,9 +23,9 @@
       <a href="page-1" data-voice="page one">Page 1</a>
       <a href="page-2" data-voice="page two">Page 2</a>
       <a href="page-3" data-voice="page three">Page 3</a>
+      <a data-voice="alert" onclick="alert('YES')">Alert</a>
     </li>
   </ul>
-  <button onclick="Voice.startListening()">Start listening</button>
 
 
 </body>
@@ -26,7 +33,7 @@
 
 <!--Load the module -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
-<script src="../docs/main.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/SpeechKITT/1.0.0/speechkitt.min.js"></script>
+<script src="script.js"></script>
+  
 </html>

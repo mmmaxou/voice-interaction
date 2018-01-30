@@ -1,6 +1,5 @@
-const DEBUG = false
-
-var v = function (selector) {
+const DEBUG = true
+var VoiceInteraction = function (selector) {
   var self = {
     links: {},
     hasVoiceDetection: undefined,
@@ -8,7 +7,6 @@ var v = function (selector) {
     click: document.createEvent("MouseEvents"),
   }
   self.click.initMouseEvent("click", true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
-
   self.init = function () {
     self.detectLinks(selector)
     self.bindLinks()
@@ -21,6 +19,10 @@ var v = function (selector) {
     } else {
       links = document.querySelector(selector)
     }
+
+    /*
+    Gather all the links that has data-voice attr 
+    */    
     let linksWithTags = Array.from(links).filter(function (link) {
       return !!link.attributes["data-voice"]
     })
@@ -29,6 +31,10 @@ var v = function (selector) {
     } else {
       self.links = null
     }
+    
+    /*
+    Gather all the links that has data-voice attr 
+    */    
   }
   self.bindLinks = function () {
     if (!self.links) {
@@ -46,10 +52,9 @@ var v = function (selector) {
     })
   }
   self.addLink = function (link, href) {
-
     let recognizer = link.attributes['data-voice'].value
     let obj = {}
-    obj[recognizer] = function () {
+    obj["(click on)" +  recognizer] = function () {
       link.dispatchEvent(self.click)
     }
     annyang.addCommands(obj)
@@ -59,37 +64,29 @@ var v = function (selector) {
       // Add our commands to annyang
       annyang.addCallback('resultNoMatch', function (userSaid) {
         console.log("Not found : ", userSaid); // sample output: 'hello'
+        SpeechKITT.setSampleCommands(["Sorry I don't understand this"])
       });
-
-      // Tell KITT to use annyang
+      SpeechKITT.setStylesheet('//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/1.0.0/themes/flat-emerald.css');
+      SpeechKITT.setInstructionsText("Try to say : 'Page One'")
+      SpeechKITT.displayRecognizedSentence(true)
       SpeechKITT.annyang();
-
-      // Define a stylesheet for KITT to use
-      SpeechKITT.setStylesheet('https://cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/themes/flat-amethyst.css');
-
-      // Render KITT's interface
       SpeechKITT.vroom();
       annyang.start()
       self.hasVoiceDetection = true
     } else {
       self.hasVoiceDetection = false
+      alert("Your browser can't use annyand, please use chrome.")
     }
   }
   self.throwWarning = function () {
     console.warn("Voice Interaction error : ")
     console.warn("There is no link with the <data-voice> tag");
   }
-
-
   self.startListening = function () {
     annyang.start()
   }
   self.init()
   return self
 }
-var Voice
 
-document.addEventListener("DOMContentLoaded", function (event) {
-  //do work
-  Voice = new v()
-});
+export default VoiceInteraction
